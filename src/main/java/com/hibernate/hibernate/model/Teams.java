@@ -13,6 +13,9 @@ public class Teams {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    private String car;
+    private String country;
+    private String technical_director;
 
     public Drivers getDrivers() {
         return drivers;
@@ -27,9 +30,7 @@ public class Teams {
     @JoinColumn(name = "drivers_id", nullable = false)
     private Drivers drivers;
 
-    public Teams() {
-
-    }
+    public Teams() {}
 
     public long getId() {
         return id;
@@ -46,5 +47,17 @@ public class Teams {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getCar() { return car; }
+
+    public void setCar(String car) { this.car = car; }
+
+    public String getCountry() { return country; }
+
+    public void setCountry(String country) { this.country = country; }
+
+    public String getTechnical_director() { return technical_director; }
+
+    public void setTechnical_director(String technical_director) { this.technical_director = technical_director; }
 
 }

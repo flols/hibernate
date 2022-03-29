@@ -5,14 +5,13 @@ import com.hibernate.hibernate.model.Drivers;
 import com.hibernate.hibernate.model.Teams;
 import com.hibernate.hibernate.service.DriversService;
 import com.hibernate.hibernate.service.TeamsService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
 
+@RestController
+@RequestMapping("/teams")
 public class TeamsController {
 
     @Resource(name = "teamsService")
@@ -35,7 +34,7 @@ public class TeamsController {
     public Teams create(final @RequestBody TeamsDto teamsDto){
         Drivers teamsOwner = driversService.get(TeamsDto.getTeamsOwnerId()).orElseThrow(() -> new RuntimeException("Student not found : " + teamsDto.getTeamsOwnerId()));
 
-        return teamsService.create(teamsDto.getName(), teamsOwner).orElseThrow(() -> new RuntimeException("Something went wrong, please try later"));
+        return teamsService.create(teamsDto.getName(), teamsOwner, teamsDto.getCar(), teamsDto.getCountry(), teamsDto.getTechnical_director()).orElseThrow(() -> new RuntimeException("Something went wrong, please try later"));
     }
 
 }

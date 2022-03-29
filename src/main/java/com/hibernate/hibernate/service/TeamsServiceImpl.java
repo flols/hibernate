@@ -25,18 +25,24 @@ public class TeamsServiceImpl implements TeamsService{
     }
 
     @Override
-    public Optional<Teams> create(String name, Drivers teamsOwner) {
+    public Optional<Teams> create(String name, Drivers teamsOwner, String car, String country, String technical_director) {
 
         Optional<Teams> teamsExistWithOwnerId = getByOwnerId(teamsOwner.getId());
 
         if (teamsExistWithOwnerId.isPresent()){
             teamsExistWithOwnerId.get().setName(name);
+            teamsExistWithOwnerId.get().setCar(car);
+            teamsExistWithOwnerId.get().setCountry(country);
+            teamsExistWithOwnerId.get().setTechnical_director(technical_director);
 
             return Optional.of(teamsRepository.save(teamsExistWithOwnerId.get()));
         }
 
         Teams teams = new Teams();
         teams.setName(name);
+        teams.setName(car);
+        teams.setName(country);
+        teams.setName(technical_director);
         teams.setDrivers(teamsOwner);
 
         return Optional.of(teamsRepository.save(teams));
