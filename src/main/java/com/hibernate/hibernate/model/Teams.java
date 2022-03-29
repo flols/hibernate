@@ -1,9 +1,7 @@
 package com.hibernate.hibernate.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Id;
-
 
 import javax.persistence.*;
 
@@ -48,8 +46,5 @@ public class Teams {
     public void setName(String name) {
         this.name = name;
     }
-
-
-
 
 }
